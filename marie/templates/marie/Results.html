@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results Round {{ player.round_number }} out of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="alert alert-info">
+        Employer decision in this period was: <span class="font-weight-bold">{{ group.get_inspect_display }}</span>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Worker</th>
+            <th>Contribution</th>
+            <th>Taking decision</th>
+        </tr>
+        </thead>
+        {% for foo in group.get_workers %}
+            <tr>
+                <td>Worker {{ foo.id_in_group }}</td>
+                <td>
+                    {{ foo.contribution }}
+                </td>
+                <td>
+                    {{ foo.take }}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+    {% next_button %}
+{% endblock %}
+
+
